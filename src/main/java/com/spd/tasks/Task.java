@@ -2,6 +2,7 @@ package com.spd.tasks;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 public class Task
@@ -15,15 +16,15 @@ public class Task
 
     public Task(Type type,Priority prio, String dueDate, String content)
     {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy").withResolverStyle(ResolverStyle.STRICT);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d MMM yyyy");
         try
         {
             LocalDate date = LocalDate.parse(dueDate, fmt);
             m_due = date;
         }
-        catch (Exception e)
+        catch (DateTimeParseException e)
         {
-            System.err.println(e.getLocalizedMessage());
+            System.err.println("Parsing error: " + e.getLocalizedMessage());
         }
         m_type = type;
         m_prio = prio;
