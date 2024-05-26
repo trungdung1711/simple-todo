@@ -3,7 +3,6 @@ package com.spd.tasks;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.ResolverStyle;
 
 public class Task
 {
@@ -52,7 +51,7 @@ public class Task
 
     public void changeDueDay(String newDueDay)
     {
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy").withResolverStyle(ResolverStyle.STRICT);
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("d MMM yyyy");
         try
         {
             LocalDate date = LocalDate.parse(newDueDay, fmt);
