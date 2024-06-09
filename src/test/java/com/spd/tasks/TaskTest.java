@@ -13,17 +13,17 @@ public class TaskTest
     @Test
     public void should_initialise_a_new_task()
     {
-        Task newTaks = new Task(Type.STUDY,false ,Priority.MUST_DONE, "Doing the exercises of probabilities", "15 Feb 2025");
+        Task newTaks = new Task(Type.STUDY,false ,Priority.MUST_DO, "Doing the exercises of probabilities", "15 Feb 2025");
 
         assertEquals(Type.STUDY, newTaks.getType());
-        assertEquals(Priority.MUST_DONE, newTaks.getPrio());
+        assertEquals(Priority.MUST_DO, newTaks.getPrio());
     }
 
 
     @Test
     public void should_generate_parse_exception()
     {
-        //new Task(Type.EXERCISES,Priority.MUST_DONE,"300 Aug 2018","Doing exercises");
+        //new Task(Type.EXERCISES,Priority.MUST_DO,"300 Aug 2018","Doing exercises");
         assertTrue(Boolean.TRUE);
     }
 

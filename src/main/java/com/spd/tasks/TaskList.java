@@ -2,6 +2,11 @@ package com.spd.tasks;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -33,6 +38,17 @@ public class TaskList
     public void add(Task newTask)
     {
         this.list.add(newTask);
+    }
+
+
+    public void delete(Integer id)
+    {
+        if (id < 1 || id > this.list.size())
+        {
+            System.err.println("Delete error: Fail to delete this task");
+            return;
+        }
+        this.list.remove(id-1);
     }
 
 
@@ -86,6 +102,56 @@ public class TaskList
 
     public void printList()
     {
-        System.out.printf("---------------------------------------------------------------------");
+        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s %-40s %-10s %-15s %-12s %-4s |%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
+        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
+        Integer index = 1;
+        for (Task task : this.list)
+        {
+            String doneMark = null;
+            if (task.isDone())
+                doneMark = "X";
+            else
+                doneMark = "-";
+            System.out.printf("|%-5s %-40s %-10s %-15s %-12s %-4s |%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),doneMark);
+        }
+        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
+    }
+
+
+    public void sortByPriority()
+    {
+        /*
+         * MUST_DONE    0
+         * SHOULD_DONE  1
+         * OPTINAL      2
+         */
+        Collections.sort(this.list,new Comparator<Task>() 
+        {
+            @Override
+            public int compare(Task t1,Task t2)    
+            {
+                if (t1.getPrio().compareTo(t2.getPrio()) == 0)
+                {
+                    DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+                    LocalDate t1_date = LocalDate.parse(t1.getDueString(), fmt);
+                    LocalDate t2_date = LocalDate.parse(t2.getDueString(), fmt);
+                    if (t1_date.isEqual(t2_date))
+                    {
+                        return -1;
+                    }
+                    else if (t1_date.isBefore(t2_date))
+                    {
+                        return -1;
+                    }
+                    return 1;
+                }
+                else if (t1.getPrio().compareTo(t2.getPrio()) < 0)
+                {
+                    return 1;
+                }
+                return -1;
+            }
+        });
     }
 };

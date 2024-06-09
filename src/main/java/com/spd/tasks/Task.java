@@ -12,7 +12,7 @@ public class Task
 {
     private Type        type = Type.STUDY;
     private Boolean     done = Boolean.FALSE;
-    private Priority    prio = Priority.SHOULD_DONE;
+    private Priority    prio = Priority.SHOULD_DO;
     private String      content;
     private String      dueString;
 
