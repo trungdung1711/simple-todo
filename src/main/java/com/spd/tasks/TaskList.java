@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -45,10 +44,16 @@ public class TaskList
     {
         if (id < 1 || id > this.list.size())
         {
-            System.err.println("Delete error: Fail to delete this task");
+            System.err.println("Deleting error: Fail to delete this task");
             return;
         }
         this.list.remove(id-1);
+    }
+
+
+    public void deleteAll()
+    {
+        this.list.clear();
     }
 
 
@@ -64,7 +69,7 @@ public class TaskList
             }
             catch(IOException e)
             {
-                System.err.println("Creating error: " + e.getLocalizedMessage());
+                System.err.println("Saving error: " + e.getLocalizedMessage());
             }
         }
         try
@@ -73,7 +78,7 @@ public class TaskList
         }
         catch(Exception e)
         {
-            System.err.println("Writing error: " + e.getLocalizedMessage());
+            System.err.println("Saving error: " + e.getLocalizedMessage());
         }
     }
 
@@ -85,7 +90,7 @@ public class TaskList
         LinkedList<Task> newList = null;
         if (!fdb.exists())
         {
-            System.err.println("There is no list");
+            System.err.println("Generating error");
             return null;
         }
         try
@@ -94,7 +99,7 @@ public class TaskList
         }
         catch(Exception e)
         {
-            System.err.println("Generate error: " + e.getLocalizedMessage());
+            System.err.println("Generating error: " + e.getLocalizedMessage());
         }
         return new TaskList(newList);
     }

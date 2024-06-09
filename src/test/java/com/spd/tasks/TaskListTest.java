@@ -1,7 +1,6 @@
 package com.spd.tasks;
 
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 public class TaskListTest
@@ -59,14 +58,14 @@ public class TaskListTest
     }
 
 
-    //@Test
+    @Test
     public void should_delete_a_task_and_write_to_the_data_base()
     {
         TaskList newList = TaskList.generateList();
         newList.delete(1);
+        newList.printList();
         assertTrue(Boolean.TRUE);
     }
-
 
 
     @Test
@@ -76,5 +75,17 @@ public class TaskListTest
         newList.sortByPriority();
         newList.printList();
         assertTrue(Boolean.TRUE);
+    }
+
+
+    @Test
+    public void should_finish_all_the_list()
+    {
+        TaskList newList = TaskList.generateList();
+        newList.getList().forEach((Task task) -> 
+        {
+            task.finishTask();
+        });
+        newList.printList();
     }
 };

@@ -5,9 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 
-
-
-
 public class Task
 {
     private Type        type = Type.STUDY;
