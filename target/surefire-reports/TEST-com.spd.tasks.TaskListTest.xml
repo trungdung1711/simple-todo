@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.spd.tasks.TaskTest" time="0" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.spd.tasks.TaskListTest" time="0.395" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,8 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="should_generate_parse_exception" classname="com.spd.tasks.TaskTest" time="0"/>
-  <testcase name="should_show_the_string_of_date" classname="com.spd.tasks.TaskTest" time="0"/>
-  <testcase name="should_parse_the_date" classname="com.spd.tasks.TaskTest" time="0"/>
-  <testcase name="should_initialise_a_new_task" classname="com.spd.tasks.TaskTest" time="0"/>
+  <testcase name="should_change_the_value_of_the_data_base_of_the_file" classname="com.spd.tasks.TaskListTest" time="0.349"/>
+  <testcase name="should_print_the_whole_list_without_any_sorting" classname="com.spd.tasks.TaskListTest" time="0.005"/>
+  <testcase name="should_parse_object_to_json_file" classname="com.spd.tasks.TaskListTest" time="0.003"/>
+  <testcase name="should_generate_a_new_list_from_json_file" classname="com.spd.tasks.TaskListTest" time="0.006"/>
 </testsuite>

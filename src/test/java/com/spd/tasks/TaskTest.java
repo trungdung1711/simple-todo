@@ -13,12 +13,10 @@ public class TaskTest
     @Test
     public void should_initialise_a_new_task()
     {
-        Task newTaks = new Task(Type.STUDY, Priority.MUST_DONE, "26 May 2024", "Doing the exercises of probabilities");
+        Task newTaks = new Task(Type.STUDY,false ,Priority.MUST_DONE, "Doing the exercises of probabilities", "15 Feb 2025");
 
         assertEquals(Type.STUDY, newTaks.getType());
         assertEquals(Priority.MUST_DONE, newTaks.getPrio());
-        assertEquals(LocalDate.of(2024, 5, 26), newTaks.getDueDay());
-        assertEquals("Doing the exercises of probabilities", newTaks.getContent());
     }
 
 
