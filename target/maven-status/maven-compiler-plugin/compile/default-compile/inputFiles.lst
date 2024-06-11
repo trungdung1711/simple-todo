@@ -2,4 +2,7 @@ D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Priority.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\TaskList.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Task.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Type.java
-D:\trungdung\JAVA\todo-application\src\main\java\com\spd\App.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\Todo.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Delete.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Add.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Print.java

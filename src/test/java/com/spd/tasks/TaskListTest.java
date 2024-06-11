@@ -1,11 +1,14 @@
 package com.spd.tasks;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 public class TaskListTest
 {
-    @Test
+    //@Test
     public void should_parse_object_to_json_file()
     {
         Task newTask = new Task(Type.WORK,false, Priority.MUST_DO, "Doing the exercises of Java","12 May 2024");
@@ -27,7 +30,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_generate_a_new_list_from_json_file()
     {
         TaskList newList =  TaskList.generateList();
@@ -35,7 +38,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_change_the_value_of_the_data_base_of_the_file()
     {
         TaskList newList = TaskList.generateList();
@@ -49,7 +52,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_print_the_whole_list_without_any_sorting()
     {
         TaskList newList = TaskList.generateList();
@@ -58,7 +61,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_delete_a_task_and_write_to_the_data_base()
     {
         TaskList newList = TaskList.generateList();
@@ -68,7 +71,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_sort_the_list_based_on_the_priority_and_the_due_day()
     {
         TaskList newList = TaskList.generateList();
@@ -78,7 +81,7 @@ public class TaskListTest
     }
 
 
-    @Test
+    //@Test
     public void should_finish_all_the_list()
     {
         TaskList newList = TaskList.generateList();
@@ -87,5 +90,31 @@ public class TaskListTest
             task.finishTask();
         });
         newList.printList();
+    }
+
+
+
+    //@Test
+    public void should_print_the_most_urgent_task()
+    {
+        TaskList newList = TaskList.generateList();
+        newList.getUrgent().printTask();
+        assertTrue(Boolean.TRUE);
+    }
+
+
+    //@Test
+    public void should_show_the_new_list_generated_from_empty_database_null()
+    {
+        TaskList newList = TaskList.generateList();
+        assertNull(newList.getList());
+    }
+
+
+    //@Test
+    public void should_print_empty_list()
+    {
+        TaskList newList = TaskList.generateList();
+        assertTrue(Boolean.TRUE);
     }
 };

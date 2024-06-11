@@ -29,7 +29,7 @@ public class Task
         }
         catch (DateTimeParseException e)
         {
-            System.err.println("Parsing error: " + e.getLocalizedMessage());
+            throw e;
         }
         this.type = type;
         this.prio = prio;
@@ -66,7 +66,8 @@ public class Task
         }
         catch (Exception e)
         {
-            System.err.println(e.getLocalizedMessage());
+            System.err.println("Parsing error" + e.getLocalizedMessage());
+            return;
         }
         this.dueString = newDueDay;
     }
@@ -106,4 +107,12 @@ public class Task
     {
         return this.dueString;
     }
+
+
+    public void printTask()
+    {
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",getContent(),getType(),getPrio(),getDueString(),(isDone() == Boolean.TRUE)?("X"):("-"));    }
 }

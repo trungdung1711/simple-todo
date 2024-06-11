@@ -100,6 +100,7 @@ public class TaskList
         catch(Exception e)
         {
             System.err.println("Generating error: " + e.getLocalizedMessage());
+            return null;
         }
         return new TaskList(newList);
     }
@@ -107,20 +108,15 @@ public class TaskList
 
     public void printList()
     {
-        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s %-40s %-10s %-15s %-12s %-4s |%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
-        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
         Integer index = 1;
         for (Task task : this.list)
         {
-            String doneMark = null;
-            if (task.isDone())
-                doneMark = "X";
-            else
-                doneMark = "-";
-            System.out.printf("|%-5s %-40s %-10s %-15s %-12s %-4s |%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),doneMark);
+            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
         }
-        System.out.printf("|--------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
     }
 
 
@@ -158,5 +154,37 @@ public class TaskList
                 return -1;
             }
         });
+    }
+
+
+    public Task getUrgent()
+    {
+        /**
+         * Return the most urgent task
+         * 
+         * @return the most urgent task
+         */
+        if (this.list.isEmpty()) return null;
+        Task urgent = this.list.getFirst();
+        for (Task task : this.list)
+        {
+            if (task.getPrio().compareTo(urgent.getPrio()) > 0)
+                urgent = task;
+            else if (task.getPrio().compareTo(urgent.getPrio()) == 0)
+            {
+                DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+                LocalDate t1_date = LocalDate.parse(task.getDueString(), fmt);
+                LocalDate t2_date = LocalDate.parse(urgent.getDueString(), fmt);
+                if (t1_date.isEqual(t2_date))
+                {
+                    urgent = task;
+                }
+                else if (t1_date.isBefore(t2_date))
+                {
+                    urgent = task;
+                }
+            }
+        }
+        return urgent;
     }
 };
