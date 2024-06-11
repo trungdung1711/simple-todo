@@ -20,10 +20,36 @@ public class Print implements Runnable
         description = "Print the most urgent task"
     )
     Boolean urgent;
+
+
+    public static void printList(TaskList list)
+    {
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        Integer index = 1;
+        for (Task task : list.getList())
+        {
+            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
+        }
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+    }
+
+
+    public static void printTask(Task task)
+    {
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));    
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+    }
+
+
     public void run()
     {
         /**
-         * Print the while list for the users
+         * Print the list for the user
          * 
          * 
          */
@@ -38,9 +64,9 @@ public class Print implements Runnable
         if (urgent == Boolean.TRUE)
         {
             Task urgentTask = newList.getUrgent();
-            urgentTask.printTask();
+            printTask(urgentTask);
             return;
         }
-        newList.printList();
+        printList(newList);
     }
 };

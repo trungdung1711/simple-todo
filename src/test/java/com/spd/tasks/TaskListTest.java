@@ -3,6 +3,8 @@ package com.spd.tasks;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.spd.subcommand.Print;
+
 public class TaskListTest
 {
     //@Test
@@ -54,7 +56,7 @@ public class TaskListTest
     public void should_print_the_whole_list_without_any_sorting()
     {
         TaskList newList = TaskList.generateList();
-        newList.printList();
+        Print.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -64,7 +66,7 @@ public class TaskListTest
     {
         TaskList newList = TaskList.generateList();
         newList.delete(1);
-        newList.printList();
+        Print.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -74,7 +76,7 @@ public class TaskListTest
     {
         TaskList newList = TaskList.generateList();
         newList.sortByPriority();
-        newList.printList();
+        Print.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -87,7 +89,7 @@ public class TaskListTest
         {
             task.finishTask();
         });
-        newList.printList();
+        Print.printList(newList);;
     }
 
 
@@ -96,7 +98,7 @@ public class TaskListTest
     public void should_print_the_most_urgent_task()
     {
         TaskList newList = TaskList.generateList();
-        newList.getUrgent().printTask();
+        Print.printTask(newList.getUrgent());
         assertTrue(Boolean.TRUE);
     }
 
