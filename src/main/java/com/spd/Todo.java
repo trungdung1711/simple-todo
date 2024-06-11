@@ -19,7 +19,7 @@ public class Todo implements Runnable
     @Override
     public void run()
     {
-
+        System.out.println("Todo list - Plan your life (>.<)");
     }
 
 
