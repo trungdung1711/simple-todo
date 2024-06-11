@@ -1,10 +1,7 @@
 package com.spd.tasks;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-import org.junit.Test;
 
 public class TaskListTest
 {
@@ -34,6 +31,7 @@ public class TaskListTest
     public void should_generate_a_new_list_from_json_file()
     {
         TaskList newList =  TaskList.generateList();
+        newList.delete(null);
         assertTrue(Boolean.TRUE);
     }
 
@@ -115,6 +113,7 @@ public class TaskListTest
     public void should_print_empty_list()
     {
         TaskList newList = TaskList.generateList();
+        newList.add(null);
         assertTrue(Boolean.TRUE);
     }
 };

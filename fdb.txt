@@ -1,1 +1,1 @@
-[{"type":"STUDY","done":false,"prio":"MUST_DO","content":"Mastering Java in this summer","dueString":"30 Jun 2024"}]
+[]
