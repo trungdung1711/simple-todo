@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.spd.tasks.TaskTest" time="0.1" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.spd.tasks.TaskTest" time="0.095" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\Maxsys\AppData\Local\Temp\surefire4380462676936536330\surefirebooter17566641901568991161.jar C:\Users\Maxsys\AppData\Local\Temp\surefire4380462676936536330 2024-06-11T08-40-06_524-jvmRun1 surefire14736687143810750373tmp surefire_04860079391714617181tmp"/>
+    <property name="sun.java.command" value="C:\Users\Maxsys\AppData\Local\Temp\surefire10526125748811945353\surefirebooter1047235944877747836.jar C:\Users\Maxsys\AppData\Local\Temp\surefire10526125748811945353 2024-06-11T08-47-18_042-jvmRun1 surefire15933411380851586576tmp surefire_04337145709561623821tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="D:\trungdung\JAVA\todo-application\target\test-classes;D:\trungdung\JAVA\todo-application\target\classes;C:\Users\Maxsys\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Maxsys\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Maxsys\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.16.0\jackson-databind-2.16.0.jar;C:\Users\Maxsys\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.16.0\jackson-annotations-2.16.0.jar;C:\Users\Maxsys\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.16.0\jackson-core-2.16.0.jar;C:\Users\Maxsys\.m2\repository\info\picocli\picocli\4.7.6\picocli-4.7.6.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Maxsys\AppData\Local\Temp\surefire4380462676936536330\surefirebooter17566641901568991161.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Maxsys\AppData\Local\Temp\surefire10526125748811945353\surefirebooter1047235944877747836.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22+36-2370"/>
@@ -58,8 +58,8 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="should_generate_parse_exception" classname="com.spd.tasks.TaskTest" time="0.013"/>
-  <testcase name="should_show_the_string_of_date" classname="com.spd.tasks.TaskTest" time="0.043"/>
+  <testcase name="should_generate_parse_exception" classname="com.spd.tasks.TaskTest" time="0"/>
+  <testcase name="should_show_the_string_of_date" classname="com.spd.tasks.TaskTest" time="0.036"/>
   <testcase name="should_parse_the_date" classname="com.spd.tasks.TaskTest" time="0"/>
-  <testcase name="should_initialise_a_new_task" classname="com.spd.tasks.TaskTest" time="0.008"/>
+  <testcase name="should_initialise_a_new_task" classname="com.spd.tasks.TaskTest" time="0.009"/>
 </testsuite>

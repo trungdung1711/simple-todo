@@ -41,6 +41,44 @@
   </dependencies>
 
   <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.1</version>
+        <executions>
+            <execution>
+                <id>copy-dependencies</id>
+                <phase>prepare-package</phase>
+                <goals>
+                    <goal>copy-dependencies</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>
+                        ${project.build.directory}/libs
+                    </outputDirectory>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+            <archive>
+                <manifest>
+                    <addClasspath>true</addClasspath>
+                    <classpathPrefix>libs/</classpathPrefix>
+                    <mainClass>
+                      com.spd.Todo
+                    </mainClass>
+                </manifest>
+            </archive>
+        </configuration>
+      </plugin>
+
+    </plugins>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -66,20 +104,9 @@
         </plugin>
 
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <configuration>
-              <archive>
-                  <manifest>
-                      <addClasspath>true</addClasspath>
-                      <classpathPrefix>libs/</classpathPrefix>
-                      <mainClass>
-                          com.spd.Todo
-                      </mainClass>
-                  </manifest>
-              </archive>
-          </configuration>
-      </plugin>
+          <version>3.0.2</version>
+        </plugin>
 
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
@@ -102,25 +129,6 @@
           <version>3.0.0</version>
         </plugin>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <executions>
-              <execution>
-                  <id>copy-dependencies</id>
-                  <phase>prepare-package</phase>
-                  <goals>
-                      <goal>copy-dependencies</goal>
-                  </goals>
-                  <configuration>
-                      <outputDirectory>
-                          ${project.build.directory}/libs
-                      </outputDirectory>
-                  </configuration>
-              </execution>
-          </executions>
-      </plugin>
-        
       </plugins>
     </pluginManagement>
   </build>
