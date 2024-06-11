@@ -18,7 +18,7 @@ public class Add implements Runnable
 {
     @Parameters
     (
-        paramLabel = "type",
+        paramLabel = "<type>",
         description = "Type of task: STUDY  WORK  EXERCISES  GROCERIES"
     )
     private String type;
@@ -26,7 +26,7 @@ public class Add implements Runnable
 
     @Parameters
     (
-        paramLabel = "priority",
+        paramLabel = "<priority>",
         description = "Priority of task: OPTIONAL  SHOUD_DO  MUST_DO"
     )
     private String prio;
@@ -34,7 +34,7 @@ public class Add implements Runnable
 
     @Parameters
     (
-        paramLabel = "content",
+        paramLabel = "<content>",
         description = "Content of your task"
     )
     private String content;
@@ -42,7 +42,7 @@ public class Add implements Runnable
 
     @Parameters
     (
-        paramLabel = "due",
+        paramLabel = "<due>",
         description = "The due of your task"
     )
     private String dueString;

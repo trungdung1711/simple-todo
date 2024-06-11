@@ -114,5 +114,7 @@ public class Task
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
         System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",getContent(),getType(),getPrio(),getDueString(),(isDone() == Boolean.TRUE)?("X"):("-"));    }
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",getContent(),getType(),getPrio(),getDueString(),(isDone() == Boolean.TRUE)?("X"):("-"));    
+        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+    }
 }

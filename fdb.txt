@@ -1,1 +1,1 @@
-[]
+[{"type":"WORK","done":false,"prio":"SHOULD_DO","content":"Learning Mina no nihongo","dueString":"11 Jun 2024"},{"type":"STUDY","done":false,"prio":"OPTIONAL","content":"Finish Start-up exercises","dueString":"13 Jun 2024"},{"type":"GROCERIES","done":false,"prio":"SHOULD_DO","content":"Banana for lunch","dueString":"11 Jun 2024"}]

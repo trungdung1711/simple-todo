@@ -20,14 +20,25 @@ public class Delete implements Runnable
     Boolean all;
 
 
+    @Option
+    (
+        names = {"-id","--identifier"},
+        description = "The identifier of the task to be deleted"
+    )
+    Integer id;
+
+
     public void run()
     {
         TaskList newList = TaskList.generateList();
-        if (this.all)
+        if (this.all != null && this.all == Boolean.TRUE)
         {
             newList.deleteAll();
         }
+        else if (this.id != null)
+        {
+            newList.delete(id);
+        }
         newList.saveList();
-
     }
 };
