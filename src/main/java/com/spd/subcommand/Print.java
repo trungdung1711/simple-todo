@@ -2,6 +2,8 @@ package com.spd.subcommand;
 
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksmachines.DatabaseManager;
+import com.spd.tasks.tasksmachines.Printer;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -22,30 +24,6 @@ public class Print implements Runnable
     Boolean urgent;
 
 
-    public static void printList(TaskList list)
-    {
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        Integer index = 1;
-        for (Task task : list.getList())
-        {
-            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
-        }
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-    }
-
-
-    public static void printTask(Task task)
-    {
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));    
-        System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-    }
-
-
     public void run()
     {
         /**
@@ -53,20 +31,13 @@ public class Print implements Runnable
          * 
          * 
          */
-        TaskList newList = TaskList.generateList();
-        if (newList.getList().isEmpty())
-        {
-            System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-            System.out.printf("|%-100s|%n","OHAYYO ~~ YOUR TO DO LIST IS CURRENTLY EMPTY, TRY TO PLAN AND ADD SOME FANTASTIC TASKS TO SEE ^.^ ~~");
-            System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-            return;
-        }
-        if (urgent == Boolean.TRUE)
+        TaskList newList = DatabaseManager.generateList();
+        if (urgent != null && urgent == Boolean.TRUE)
         {
             Task urgentTask = newList.getUrgent();
-            printTask(urgentTask);
+            Printer.printTask(urgentTask);
             return;
         }
-        printList(newList);
+        Printer.printList(newList);
     }
 };

@@ -1,21 +1,16 @@
 package com.spd.tasks;
 
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 public class TaskList
 {
     private LinkedList<Task> list;
 
-
+    
     public TaskList(LinkedList<Task> list)
     {
         this.list = list;
@@ -54,55 +49,6 @@ public class TaskList
     public void deleteAll()
     {
         this.list.clear();
-    }
-
-
-    public void saveList()
-    {
-        ObjectMapper mp = new ObjectMapper();
-        File fdb = new File("./fdb.txt");
-        if (!fdb.exists())
-        {
-            try 
-            {
-                fdb.createNewFile();
-            }
-            catch(IOException e)
-            {
-                System.err.println("Saving error: " + e.getLocalizedMessage());
-            }
-        }
-        try
-        {
-            mp.writeValue(fdb, this.list);
-        }
-        catch(Exception e)
-        {
-            System.err.println("Saving error: " + e.getLocalizedMessage());
-        }
-    }
-
-
-    public static TaskList generateList()
-    {
-        ObjectMapper mp = new ObjectMapper();
-        File fdb = new File("./fdb.txt");
-        LinkedList<Task> newList = null;
-        if (!fdb.exists())
-        {
-            System.err.println("Generating error");
-            return null;
-        }
-        try
-        {
-            newList = mp.readValue(fdb, new TypeReference<LinkedList<Task>>(){});
-        }
-        catch(Exception e)
-        {
-            System.err.println("Generating error: " + e.getLocalizedMessage());
-            return null;
-        }
-        return new TaskList(newList);
     }
 
 

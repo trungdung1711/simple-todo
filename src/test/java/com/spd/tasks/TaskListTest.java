@@ -4,6 +4,8 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import com.spd.subcommand.Print;
+import com.spd.tasks.tasksmachines.DatabaseManager;
+import com.spd.tasks.tasksmachines.Printer;
 
 public class TaskListTest
 {
@@ -24,7 +26,7 @@ public class TaskListTest
         newList.add(newTask3);
         newList.add(newTask4);
         newList.add(new Task(Type.GROCERIES,false,Priority.SHOULD_DO,"Buying banana for lunch","12 May 2024"));
-        newList.saveList();
+        DatabaseManager.saveList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -32,7 +34,7 @@ public class TaskListTest
     //@Test
     public void should_generate_a_new_list_from_json_file()
     {
-        TaskList newList =  TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.delete(null);
         assertTrue(Boolean.TRUE);
     }
@@ -41,13 +43,13 @@ public class TaskListTest
     //@Test
     public void should_change_the_value_of_the_data_base_of_the_file()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.getList().get(2).changeDueDay("17 Oct 2004");
         newList.getList().get(2).changeContent("The content has been changed");
         newList.getList().get(2).finishTask();
         newList.getList().get(2).changeType(Type.WORK);
         newList.getList().get(2).changePrio(Priority.MUST_DO);
-        newList.saveList();
+        DatabaseManager.saveList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -55,8 +57,8 @@ public class TaskListTest
     //@Test
     public void should_print_the_whole_list_without_any_sorting()
     {
-        TaskList newList = TaskList.generateList();
-        Print.printList(newList);
+        TaskList newList =  DatabaseManager.generateList();
+        Printer.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -64,9 +66,9 @@ public class TaskListTest
     //@Test
     public void should_delete_a_task_and_write_to_the_data_base()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.delete(1);
-        Print.printList(newList);
+        Printer.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -74,9 +76,9 @@ public class TaskListTest
     //@Test
     public void should_sort_the_list_based_on_the_priority_and_the_due_day()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.sortByPriority();
-        Print.printList(newList);
+        Printer.printList(newList);
         assertTrue(Boolean.TRUE);
     }
 
@@ -84,12 +86,12 @@ public class TaskListTest
     //@Test
     public void should_finish_all_the_list()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.getList().forEach((Task task) -> 
         {
             task.finishTask();
         });
-        Print.printList(newList);;
+        Printer.printList(newList);
     }
 
 
@@ -97,8 +99,8 @@ public class TaskListTest
     //@Test
     public void should_print_the_most_urgent_task()
     {
-        TaskList newList = TaskList.generateList();
-        Print.printTask(newList.getUrgent());
+        TaskList newList =  DatabaseManager.generateList();
+        Printer.printTask(newList.getUrgent());
         assertTrue(Boolean.TRUE);
     }
 
@@ -106,7 +108,7 @@ public class TaskListTest
     //@Test
     public void should_show_the_new_list_generated_from_empty_database_null()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         assertNull(newList.getList());
     }
 
@@ -114,7 +116,7 @@ public class TaskListTest
     //@Test
     public void should_print_empty_list()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList =  DatabaseManager.generateList();
         newList.add(null);
         assertTrue(Boolean.TRUE);
     }

@@ -5,6 +5,7 @@ import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
 import com.spd.tasks.Type;
+import com.spd.tasks.tasksmachines.DatabaseManager;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
@@ -52,7 +53,7 @@ public class Add implements Runnable
         /**
          * This method will add a tasks to the todo list
          */
-        TaskList newList = TaskList.generateList();
+        TaskList newList = DatabaseManager.generateList();
         Type type = null;
         Priority prio = null;
         try 
@@ -77,6 +78,6 @@ public class Add implements Runnable
 
         Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
         newList.add(newTask);
-        newList.saveList();
+        DatabaseManager.saveList(newList);
     }
 };

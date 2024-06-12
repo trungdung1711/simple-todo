@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksmachines.DatabaseManager;
 
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
@@ -30,7 +31,7 @@ public class Delete implements Runnable
 
     public void run()
     {
-        TaskList newList = TaskList.generateList();
+        TaskList newList = DatabaseManager.generateList();
         if (this.all != null && this.all == Boolean.TRUE)
         {
             newList.deleteAll();
@@ -39,6 +40,6 @@ public class Delete implements Runnable
         {
             newList.delete(id);
         }
-        newList.saveList();
+        DatabaseManager.saveList(newList);
     }
 };

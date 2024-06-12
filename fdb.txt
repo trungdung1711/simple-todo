@@ -1,1 +1,1 @@
-[]
+[{"type":"GROCERIES","done":false,"prio":"SHOULD_DO","content":"Buying banana and fruits","dueString":"12 Jun 2024"}]
