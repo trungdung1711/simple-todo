@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
+
 
 public class Task
 {
@@ -20,7 +22,7 @@ public class Task
     }
 
 
-    public Task(Type type, Boolean done, Priority prio, String content, String dueString)
+    public Task(Type type, Boolean done, Priority prio, String content, String dueString) throws InvalidInformationOfTasksException
     {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
         try
@@ -29,7 +31,7 @@ public class Task
         }
         catch (DateTimeParseException e)
         {
-            throw e;
+            throw new InvalidInformationOfTasksException("Date format is \"dd MMM yyyy\"", e);
         }
         this.type = type;
         this.prio = prio;
@@ -67,7 +69,7 @@ public class Task
         catch (Exception e)
         {
             System.err.println("Parsing error" + e.getLocalizedMessage());
-            return;
+            throw e;
         }
         this.dueString = newDueDay;
     }

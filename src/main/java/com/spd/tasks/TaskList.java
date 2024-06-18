@@ -119,4 +119,15 @@ public class TaskList
         }
         return urgent;
     }
+
+
+    public void finish(Integer id)
+    {
+        if (id < 1 || id > this.list.size())
+        {
+            System.err.println("Finishing error: Fail to delete this task");
+            return;
+        }
+        this.getList().get(id - 1).finishTask();
+    }
 };

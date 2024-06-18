@@ -5,6 +5,7 @@ import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
 import com.spd.tasks.Type;
+import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
 import picocli.CommandLine.Command;
@@ -59,25 +60,24 @@ public class Add implements Runnable
         try 
         {
             type = Type.valueOf(this.type);
+            prio = Priority.valueOf(this.prio);
         }
         catch (Exception e)
         {
-            System.err.println("Parsing error: " + e.getLocalizedMessage());
+            System.err.println("Adding error: invalid Type or Priority");
             return;
         }
 
         try
         {
-            prio = Priority.valueOf(this.prio);
+            Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
+            newList.add(newTask);
         }
-        catch (Exception e)
+        catch (InvalidInformationOfTasksException iviote)
         {
-            System.err.println("Parsing error: " + e.getLocalizedMessage());
+            System.err.println("Adding error: " +  iviote.getMessage());
             return;
         }
-
-        Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
-        newList.add(newTask);
         DatabaseManager.saveList(newList);
     }
 };
