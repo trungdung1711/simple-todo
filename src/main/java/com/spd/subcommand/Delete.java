@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
@@ -32,23 +33,32 @@ public class Delete implements Runnable
 
     public void run()
     {
-        TaskList newList = DatabaseManager.generateList();
-        if (this.all != null && this.all == Boolean.TRUE)
+        try
         {
-            newList.deleteAll();
-        }
-        else if (this.id != null)
-        {
-            try
+            TaskList newList = DatabaseManager.generateList();
+            if (this.all != null && this.all == Boolean.TRUE)
             {
-                newList.delete(id);
+                newList.deleteAll();
             }
-            catch(InvalidTaskIdentifierException itie)
+            else if (this.id != null)
             {
-                System.err.println("Deleting error: " + itie.getMessage());
-            }
+                try
+                {
+                    newList.delete(id);
+                }
+                catch(InvalidTaskIdentifierException itie)
+                {
+                    System.err.println("Deleting error: " + itie.getMessage());
+                    return;
+                }
             
+            }
+            DatabaseManager.saveList(newList);
         }
-        DatabaseManager.saveList(newList);
+        catch(FailToConnectDataBaseException ftcdbe)
+        {
+            System.err.println("Deleting error: " + ftcdbe.getMessage());
+            return;
+        }
     }
 };

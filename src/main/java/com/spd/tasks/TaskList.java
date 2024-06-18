@@ -125,13 +125,15 @@ public class TaskList
     }
 
 
-    public void finish(Integer id)
+    public void finish(Integer id) throws InvalidTaskIdentifierException
     {
-        if (id < 1 || id > this.list.size())
+        try
         {
-            System.err.println("Finishing error: Fail to delete this task");
-            return;
+            this.list.get(id-1).finishTask();
         }
-        this.getList().get(id - 1).finishTask();
+        catch(IndexOutOfBoundsException ioobe)
+        {
+            throw new InvalidTaskIdentifierException("Invalid task identifier", ioobe);
+        }
     }
 };

@@ -1,5 +1,6 @@
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Priority.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\TaskList.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\tasksexception\FailToConnectDataBaseException.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Task.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\tasksmachines\DatabaseManager.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Type.java

@@ -1,6 +1,8 @@
 package com.spd.subcommand;
 
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
+import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
 import picocli.CommandLine.Command;
@@ -23,8 +25,24 @@ public class Finish implements Runnable
 
     public void run()
     {
-        TaskList newList = DatabaseManager.generateList();
-        newList.finish(id);
-        DatabaseManager.saveList(newList);
+        try
+        {
+            TaskList newList = DatabaseManager.generateList();
+            try
+            {
+                newList.finish(id);
+            }
+            catch (InvalidTaskIdentifierException ivtie)
+            {
+                System.err.println("Finishing error: " + ivtie.getMessage());
+                return;
+            }
+            DatabaseManager.saveList(newList);
+        }
+        catch (FailToConnectDataBaseException ftcdbe)
+        {
+            System.err.println("Finishing error: " + ftcdbe.getMessage());
+            return;
+        }
     }
 };

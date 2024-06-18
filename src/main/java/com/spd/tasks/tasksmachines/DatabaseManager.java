@@ -8,18 +8,18 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 
 public class DatabaseManager
 {
-    public static TaskList generateList()
+    public static TaskList generateList() throws FailToConnectDataBaseException
     {
         ObjectMapper mp = new ObjectMapper();
         File fdb = new File("./fdb.txt");
         LinkedList<Task> newList = null;
         if (!fdb.exists())
         {
-            System.err.println("Generating error");
-            return null;
+            throw new FailToConnectDataBaseException("fdb.txt doesn't exist");
         }
         try
         {
@@ -27,14 +27,13 @@ public class DatabaseManager
         }
         catch(Exception e)
         {
-            System.err.println("Generating error: " + e.getLocalizedMessage());
-            return null;
+            throw new FailToConnectDataBaseException("Fail to read the database",e);
         }
         return new TaskList(newList);
     }
 
 
-    public static void saveList(TaskList list)
+    public static void saveList(TaskList list) throws FailToConnectDataBaseException
     {
         ObjectMapper mp = new ObjectMapper();
         File fdb = new File("./fdb.txt");
@@ -46,8 +45,7 @@ public class DatabaseManager
             }
             catch(IOException e)
             {
-                System.err.println("Saving error: " + e.getLocalizedMessage());
-                return;
+                throw new FailToConnectDataBaseException("Fail to create new fdb.txt");
             }
         }
         try
@@ -56,8 +54,7 @@ public class DatabaseManager
         }
         catch(Exception e)
         {
-            System.err.println("Saving error: " + e.getLocalizedMessage());
-            return;
+            throw new FailToConnectDataBaseException("Fail to save data to the database",e);
         }
     }
 };

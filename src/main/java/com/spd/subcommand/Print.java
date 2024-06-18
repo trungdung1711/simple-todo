@@ -2,6 +2,7 @@ package com.spd.subcommand;
 
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 import com.spd.tasks.tasksmachines.Printer;
 
@@ -31,13 +32,21 @@ public class Print implements Runnable
          * 
          * 
          */
-        TaskList newList = DatabaseManager.generateList();
-        if (urgent != null && urgent == Boolean.TRUE)
+        try
         {
-            Task urgentTask = newList.getUrgent();
-            Printer.printTask(urgentTask);
+            TaskList newList = DatabaseManager.generateList();
+            if (urgent != null && urgent == Boolean.TRUE)
+            {
+                Task urgentTask = newList.getUrgent();
+                Printer.printTask(urgentTask);
+                return;
+            }
+            Printer.printList(newList);
+        }
+        catch (FailToConnectDataBaseException ftcdbe)
+        {
+            System.err.println("Printing error: " + ftcdbe.getMessage());
             return;
         }
-        Printer.printList(newList);
     }
 };

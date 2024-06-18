@@ -5,6 +5,7 @@ import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
 import com.spd.tasks.Type;
+import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
@@ -54,30 +55,38 @@ public class Add implements Runnable
         /**
          * This method will add a tasks to the todo list
          */
-        TaskList newList = DatabaseManager.generateList();
-        Type type = null;
-        Priority prio = null;
-        try 
-        {
-            type = Type.valueOf(this.type);
-            prio = Priority.valueOf(this.prio);
-        }
-        catch (Exception e)
-        {
-            System.err.println("Adding error: invalid Type or Priority");
-            return;
-        }
-
         try
         {
-            Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
-            newList.add(newTask);
+            TaskList newList = DatabaseManager.generateList();
+            Type type = null;
+            Priority prio = null;
+            try 
+            {
+                type = Type.valueOf(this.type);
+                prio = Priority.valueOf(this.prio);
+            }
+            catch (Exception e)
+            {
+                System.err.println("Adding error: " + e.getMessage());
+                return;
+            }
+
+            try
+            {
+                Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
+                newList.add(newTask);
+            }
+            catch (InvalidInformationOfTasksException iviote)
+            {
+                System.err.println("Adding error: " +  iviote.getMessage());
+                return;
+            }
+            DatabaseManager.saveList(newList);
         }
-        catch (InvalidInformationOfTasksException iviote)
+        catch(FailToConnectDataBaseException ftcdbe)
         {
-            System.err.println("Adding error: " +  iviote.getMessage());
+            System.err.println("Adding error: " + ftcdbe.getMessage());
             return;
         }
-        DatabaseManager.saveList(newList);
     }
 };
