@@ -41,6 +41,15 @@ public class Task
     }
 
 
+    public void changeTaskInfor(Type type, Priority prio, String content, String dueDay) throws InvalidInformationOfTasksException
+    {
+        if (type != null)
+        {
+            
+        }
+    }
+
+
     public void changeType(Type newType)
     {
         this.type = newType;

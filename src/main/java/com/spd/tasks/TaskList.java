@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 
 public class TaskList
@@ -134,6 +135,28 @@ public class TaskList
         catch(IndexOutOfBoundsException ioobe)
         {
             throw new InvalidTaskIdentifierException("Invalid task identifier", ioobe);
+        }
+    }
+
+
+    public void changeTaskInfor(Type type,Priority prio,String content,String due, Integer id) throws InvalidTaskIdentifierException,InvalidInformationOfTasksException
+    {
+        try
+        {
+            Task newTask = this.list.get(id - 1);
+
+            if (type != null)
+                newTask.changeType(type);
+            if (prio != null)
+                newTask.changePrio(prio);
+            if (content != null)
+                newTask.changeContent(content);
+            if (due != null)
+                newTask.changeDueDay(due);
+        }
+        catch (IndexOutOfBoundsException idoob)
+        {
+            throw new InvalidTaskIdentifierException("Invalid task identifier", idoob);
         }
     }
 };

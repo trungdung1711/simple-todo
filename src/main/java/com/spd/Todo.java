@@ -1,6 +1,7 @@
 package com.spd;
 
 import com.spd.subcommand.Add;
+import com.spd.subcommand.Change;
 import com.spd.subcommand.Delete;
 import com.spd.subcommand.Finish;
 import com.spd.subcommand.Print;
@@ -13,7 +14,7 @@ import picocli.CommandLine.Command;
     name = "todo",
     version = "todo 1.0",
     mixinStandardHelpOptions = true,
-    subcommands = {Print.class,Add.class,Delete.class,Finish.class}
+    subcommands = {Print.class,Add.class,Delete.class,Finish.class,Change.class}
 )
 public class Todo implements Runnable
 {

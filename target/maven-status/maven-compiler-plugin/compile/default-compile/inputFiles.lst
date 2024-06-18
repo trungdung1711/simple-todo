@@ -6,6 +6,7 @@ D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\tasksmachines\Dat
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\Type.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\Todo.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Add.java
+D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Change.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\subcommand\Print.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\tasksexception\InvalidInformationOfTasksException.java
 D:\trungdung\JAVA\todo-application\src\main\java\com\spd\tasks\tasksmachines\Printer.java
