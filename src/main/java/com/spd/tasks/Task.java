@@ -59,17 +59,16 @@ public class Task
     }
 
 
-    public void changeDueDay(String newDueDay)
+    public void changeDueDay(String newDueDay) throws InvalidInformationOfTasksException
     {
         DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
         try
         {
             LocalDate.parse(newDueDay, fmt);
         }
-        catch (Exception e)
+        catch (DateTimeParseException e)
         {
-            System.err.println("Parsing error" + e.getLocalizedMessage());
-            throw e;
+            throw new InvalidInformationOfTasksException("Date format is \"dd MMM yyyy\"", e);
         }
         this.dueString = newDueDay;
     }

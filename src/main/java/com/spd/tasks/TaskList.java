@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
+
 public class TaskList
 {
     private LinkedList<Task> list;
@@ -35,14 +37,16 @@ public class TaskList
     }
 
 
-    public void delete(Integer id)
+    public void delete(Integer id) throws InvalidTaskIdentifierException
     {
-        if (id < 1 || id > this.list.size())
+        try
         {
-            System.err.println("Deleting error: Fail to delete this task");
-            return;
+            this.list.remove(id-1);
         }
-        this.list.remove(id-1);
+        catch (IndexOutOfBoundsException ioobe)
+        {
+            throw new InvalidTaskIdentifierException("Invalid task identifier", ioobe);
+        }
     }
 
 

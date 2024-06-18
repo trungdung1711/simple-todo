@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 import com.spd.tasks.TaskList;
+import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
 import picocli.CommandLine.Command;
@@ -38,7 +39,15 @@ public class Delete implements Runnable
         }
         else if (this.id != null)
         {
-            newList.delete(id);
+            try
+            {
+                newList.delete(id);
+            }
+            catch(InvalidTaskIdentifierException itie)
+            {
+                System.err.println("Deleting error: " + itie.getMessage());
+            }
+            
         }
         DatabaseManager.saveList(newList);
     }
