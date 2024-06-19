@@ -2,7 +2,6 @@ package com.spd.subcommand;
 
 
 import com.spd.tasks.Priority;
-import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
 import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
@@ -28,7 +27,7 @@ public class Change implements Runnable
         description = "The type to be changed",
         paramLabel = "<type>"
     )
-    String typeString;
+    Type type;
 
 
     @Option
@@ -37,7 +36,7 @@ public class Change implements Runnable
         description = "The priority to be changed",
         paramLabel = "<priority>"
     )
-    String prioString;
+    Priority prio;
 
 
     @Option
@@ -61,7 +60,8 @@ public class Change implements Runnable
     @Parameters
     (
         paramLabel = "<identifier>",
-        description = "The identifier of the task to be changed"
+        description = "The identifier of the task to be changed",
+        index = "0"
     )
     Integer id;
 
@@ -78,29 +78,13 @@ public class Change implements Runnable
 
             TaskList newList = DatabaseManager.generateList();
 
-            if (typeString != null)
+            if (this.type != null)
             {
-                try
-                {
-                    type = Type.valueOf(typeString);
-                }
-                catch (Exception e)
-                {
-                    System.err.println("Changing error: "+ e.getMessage());
-                    return;
-                }
+                type = this.type;
             }
-            if (prioString != null)
+            if (this.prio != null)
             {
-                try 
-                {
-                    prio = Priority.valueOf(prioString);
-                }
-                catch (Exception e)
-                {
-                    System.err.println("Changing error: "+ e.getMessage());
-                    return;
-                }
+                prio = this.prio;
             }
             if (this.content != null)
             {

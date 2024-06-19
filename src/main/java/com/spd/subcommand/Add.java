@@ -22,23 +22,26 @@ public class Add implements Runnable
     @Parameters
     (
         paramLabel = "<type>",
-        description = "Type of task: STUDY  WORK  EXERCISES  GROCERIES"
+        description = "Type of task",
+        index = "0"
     )
-    private String type;
+    private Type type;
 
 
     @Parameters
     (
         paramLabel = "<priority>",
-        description = "Priority of task: OPTIONAL  SHOUD_DO  MUST_DO"
+        description = "Priority of task",
+        index = "1"
     )
-    private String prio;
+    private Priority prio;
 
 
     @Parameters
     (
         paramLabel = "<content>",
-        description = "Content of your task"
+        description = "Content of your task",
+        index = "2"
     )
     private String content;
 
@@ -46,7 +49,8 @@ public class Add implements Runnable
     @Parameters
     (
         paramLabel = "<due>",
-        description = "The due of your task"
+        description = "The due of your task",
+        index = "3"
     )
     private String dueString;
 
@@ -58,22 +62,10 @@ public class Add implements Runnable
         try
         {
             TaskList newList = DatabaseManager.generateList();
-            Type type = null;
-            Priority prio = null;
-            try 
-            {
-                type = Type.valueOf(this.type);
-                prio = Priority.valueOf(this.prio);
-            }
-            catch (Exception e)
-            {
-                System.err.println("Adding error: " + e.getMessage());
-                return;
-            }
 
             try
             {
-                Task newTask = new Task(type, Boolean.FALSE, prio, this.content, this.dueString);
+                Task newTask = new Task(this.type, Boolean.FALSE, this.prio, this.content, this.dueString);
                 newList.add(newTask);
             }
             catch (InvalidInformationOfTasksException iviote)

@@ -29,24 +29,15 @@ public class Task
         {
             LocalDate.parse(dueString, fmt);
         }
-        catch (DateTimeParseException e)
+        catch (DateTimeParseException dtpe)
         {
-            throw new InvalidInformationOfTasksException("Date format is \"dd MMM yyyy\"", e);
+            throw new InvalidInformationOfTasksException("Date format is \"dd MMM yyyy\"", dtpe);
         }
         this.type = type;
         this.prio = prio;
         this.content = content;
         this.dueString = dueString;
         this.done = done;
-    }
-
-
-    public void changeTaskInfor(Type type, Priority prio, String content, String dueDay) throws InvalidInformationOfTasksException
-    {
-        if (type != null)
-        {
-            
-        }
     }
 
 
