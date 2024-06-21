@@ -1,4 +1,5 @@
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/tasksmachines/Printer.java
+/mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/subcommand/Sort.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/subcommand/Unfinish.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/TaskList.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/tasksexception/InvalidInformationOfTasksException.java

@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import com.fasterxml.jackson.databind.ser.impl.IndexedStringListSerializer;
 import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 
@@ -66,7 +65,11 @@ public class TaskList
         });
     }
 
-
+    /**
+     * Sort the tasks based on the priority and the date of due
+     * @param
+     * @return 
+     */
     public void sortByPriority()
     {
         Collections.sort(this.list,new Comparator<Task>() 

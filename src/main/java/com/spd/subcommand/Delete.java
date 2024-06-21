@@ -5,10 +5,6 @@ import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
-import java.util.List;
-
-import com.spd.tasks.Task;
-
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
