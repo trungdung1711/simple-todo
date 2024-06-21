@@ -14,6 +14,7 @@ public class Task
     private Priority    prio = Priority.SHOULD_DO;
     private String      content;
     private String      dueString;
+    private Boolean     overDue;
 
     public Task()
     {
@@ -38,6 +39,7 @@ public class Task
         this.content = content;
         this.dueString = dueString;
         this.done = done;
+        this.overDue = Boolean.FALSE;
     }
 
 
@@ -95,6 +97,28 @@ public class Task
     public Boolean isDone()
     {
         return this.done;
+    }
+
+
+    public Boolean isOverDue() throws InvalidInformationOfTasksException
+    {
+        if (isDone())
+        {
+            return Boolean.FALSE;
+        }
+
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        try
+        {
+            LocalDate due = LocalDate.parse(dueString,fmt);
+            LocalDate today = LocalDate.now();
+            overDue = due.isBefore(today);
+            return overDue;
+        }
+        catch (DateTimeParseException dtpe)
+        {
+            throw new InvalidInformationOfTasksException("Date format is \"dd MMM yyyy\"", dtpe); 
+        }
     }
 
 

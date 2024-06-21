@@ -21,7 +21,7 @@ public class Printer
         Integer index = 1;
         for (Task task : list.getList())
         {
-            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
+            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isOverDue() == Boolean.TRUE)?("?"):((task.isDone())?("X"):("-")));
         }
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
     }
@@ -32,7 +32,7 @@ public class Printer
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
         System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));    
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isOverDue() == Boolean.TRUE)?("?"):((task.isDone())?("X"):("-")));    
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
     }
 
