@@ -1,5 +1,9 @@
 package com.spd.subcommand;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.spd.tasks.TaskList;
 import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
@@ -11,16 +15,17 @@ import picocli.CommandLine.Parameters;
 @Command
 (
     name = "finish",
-    description = "Mark a task to be finished"
+    description = "Mark tasks to be finished"
 )
 public class Finish implements Runnable
 {
     @Parameters
     (
         paramLabel = "<identifier>",
-        description = "The identifier of the task to be finished"
+        description = "The identifier of the task to be finished",
+        index = "0..*"
     )
-    Integer id;
+    Integer[] ids;
 
 
     public void run()
@@ -30,7 +35,12 @@ public class Finish implements Runnable
             TaskList newList = DatabaseManager.generateList();
             try
             {
-                newList.finish(id);
+                List<Integer> idsList = Arrays.asList(ids);
+                ArrayList<Integer> idsArrayList = new ArrayList<>(idsList);
+                idsArrayList.stream().forEach( (Integer id) -> 
+                {
+                    newList.finish(id);
+                });
             }
             catch (InvalidTaskIdentifierException ivtie)
             {

@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 
+import com.spd.subcommand.converter.TypeConverter;
 import com.spd.tasks.Priority;
 import com.spd.tasks.TaskList;
 import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
@@ -25,7 +26,8 @@ public class Change implements Runnable
     (
         names = {"-t","--type"},
         description = "The type to be changed",
-        paramLabel = "<type>"
+        paramLabel = "<type>",
+        converter = TypeConverter.class
     )
     Type type;
 
@@ -34,7 +36,8 @@ public class Change implements Runnable
     (
         names = {"-p","--priority"},
         description = "The priority to be changed",
-        paramLabel = "<priority>"
+        paramLabel = "<priority>",
+        converter = TypeConverter.class
     )
     Priority prio;
 
