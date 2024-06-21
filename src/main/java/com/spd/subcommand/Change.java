@@ -43,7 +43,7 @@ public class Change implements Runnable
     (
         names = {"-c","--content"},
         description = "The content to be changed",
-        paramLabel = "content"
+        paramLabel = "<content>"
     )
     String content;
 

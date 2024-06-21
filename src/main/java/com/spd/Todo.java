@@ -8,13 +8,14 @@ import com.spd.subcommand.Print;
 
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
+import picocli.CommandLine.HelpCommand;
 
 @Command
 (
     name = "todo",
     version = "todo 1.0",
     mixinStandardHelpOptions = true,
-    subcommands = {Print.class,Add.class,Delete.class,Finish.class,Change.class}
+    subcommands = {HelpCommand.class,Print.class,Add.class,Delete.class,Finish.class,Change.class}
 )
 public class Todo implements Runnable
 {

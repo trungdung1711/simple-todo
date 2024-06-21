@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 
+import com.spd.subcommand.converter.TypeConverter;
 import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
@@ -23,7 +24,8 @@ public class Add implements Runnable
     (
         paramLabel = "<type>",
         description = "Type of task",
-        index = "0"
+        index = "0",
+        converter = TypeConverter.class
     )
     private Type type;
 
