@@ -53,6 +53,12 @@ public class Task
     }
 
 
+    public void unfinishTask()
+    {
+        this.done = Boolean.FALSE;
+    }
+
+
     public void changePrio(Priority newPrio)
     {
         this.prio = newPrio;

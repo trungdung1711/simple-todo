@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 
+import com.spd.subcommand.converter.PriorityConverter;
 import com.spd.subcommand.converter.TypeConverter;
 import com.spd.tasks.Priority;
 import com.spd.tasks.TaskList;
@@ -37,7 +38,7 @@ public class Change implements Runnable
         names = {"-p","--priority"},
         description = "The priority to be changed",
         paramLabel = "<priority>",
-        converter = TypeConverter.class
+        converter = PriorityConverter.class
     )
     Priority prio;
 

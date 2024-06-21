@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
+import com.fasterxml.jackson.databind.ser.impl.IndexedStringListSerializer;
 import com.spd.tasks.tasksexception.InvalidInformationOfTasksException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 
@@ -57,13 +58,17 @@ public class TaskList
     }
 
 
+    public void deleteFinished()
+    {
+        list.removeIf((Task task) ->
+        {
+            return task.isDone();
+        });
+    }
+
+
     public void sortByPriority()
     {
-        /*
-         * MUST_DONE    0
-         * SHOULD_DONE  1
-         * OPTINAL      2
-         */
         Collections.sort(this.list,new Comparator<Task>() 
         {
             @Override
@@ -93,14 +98,13 @@ public class TaskList
         });
     }
 
-
+    /**
+     * Return the most urgent task
+     * 
+     * @return the most urgent task
+     */
     public Task getUrgent()
     {
-        /**
-         * Return the most urgent task
-         * 
-         * @return the most urgent task
-         */
         if (this.list.isEmpty()) return null;
         Task urgent = this.list.getFirst();
         for (Task task : this.list)
@@ -131,6 +135,19 @@ public class TaskList
         try
         {
             this.list.get(id-1).finishTask();
+        }
+        catch(IndexOutOfBoundsException ioobe)
+        {
+            throw new InvalidTaskIdentifierException("Invalid task identifier", ioobe);
+        }
+    }
+
+
+    public void unfinish(Integer id) throws InvalidTaskIdentifierException
+    {
+        try
+        {
+            this.list.get(id-1).unfinishTask();
         }
         catch(IndexOutOfBoundsException ioobe)
         {

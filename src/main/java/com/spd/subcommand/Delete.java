@@ -5,6 +5,10 @@ import com.spd.tasks.tasksexception.FailToConnectDataBaseException;
 import com.spd.tasks.tasksexception.InvalidTaskIdentifierException;
 import com.spd.tasks.tasksmachines.DatabaseManager;
 
+import java.util.List;
+
+import com.spd.tasks.Task;
+
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 
@@ -26,9 +30,17 @@ public class Delete implements Runnable
     @Option
     (
         names = {"-id","--identifier"},
-        description = "The identifier of the task to be deleted"
+        description = "The identifiers of the tasks to be deleted"
     )
     Integer id;
+
+
+    @Option
+    (
+        names = {"-f","--finished"},
+        description = "Delete the finished tasks"
+    )
+    Boolean finished;
 
 
     public void run()
@@ -39,6 +51,10 @@ public class Delete implements Runnable
             if (this.all != null && this.all == Boolean.TRUE)
             {
                 newList.deleteAll();
+            }
+            if (this.finished != null && this.finished == Boolean.TRUE)
+            {
+                newList.deleteFinished();
             }
             else if (this.id != null)
             {

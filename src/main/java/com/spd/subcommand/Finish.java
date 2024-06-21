@@ -22,7 +22,7 @@ public class Finish implements Runnable
     @Parameters
     (
         paramLabel = "<identifier>",
-        description = "The identifier of the task to be finished",
+        description = "The identifiers of the tasks to be finished",
         index = "0..*"
     )
     Integer[] ids;
