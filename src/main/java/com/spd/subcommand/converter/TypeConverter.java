@@ -18,10 +18,12 @@ public class TypeConverter implements ITypeConverter<Type>
         typeDic.put("w", Type.WORK);
         typeDic.put("e",Type.EXERCISES);
         typeDic.put("g", Type.GROCERIES);
+
         typeDic.put("study", Type.STUDY);
         typeDic.put("work", Type.WORK);
         typeDic.put("exercises",Type.EXERCISES);
         typeDic.put("groceries", Type.GROCERIES);
+        
         typeDic.put("STUDY", Type.STUDY);
         typeDic.put("WORK", Type.WORK);
         typeDic.put("EXERCISES",Type.EXERCISES);

@@ -1,5 +1,6 @@
 package com.spd.tasks.tasksmachines;
 
+import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
 import com.spd.tasks.TaskList;
 
@@ -20,7 +21,7 @@ public class Printer
         Integer index = 1;
         for (Task task : list.getList())
         {
-            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
+            System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n",index++,task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));
         }
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
     }
@@ -31,7 +32,19 @@ public class Printer
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
         System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","ID","CONTENTS","TYPE","PRIORITY","DUE","DONE");
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
-        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),task.getPrio(),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));    
+        System.out.printf("|%-5s%-45s%-15s%-15s%-15s%-5s|%n","*",task.getContent(),task.getType(),convertPriority2String(task.getPrio()),task.getDueString(),(task.isDone() == Boolean.TRUE)?("X"):("-"));    
         System.out.printf("|----------------------------------------------------------------------------------------------------|%n");
+    }
+
+
+    public static String convertPriority2String(Priority prio)
+    {
+        switch (prio) 
+        {
+            case OPTIONAL : return "OPTIONAL"; 
+            case MUST_DO  : return "MUST DO" ; 
+            case SHOULD_DO: return "SHOULD DO"; 
+            default : return null;
+        }
     }
 };

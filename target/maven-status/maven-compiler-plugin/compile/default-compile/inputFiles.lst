@@ -8,6 +8,7 @@
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/tasksexception/FailToConnectDataBaseException.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/subcommand/Add.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/Priority.java
+/mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/subcommand/converter/PriorityConverter.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/Task.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/tasks/tasksmachines/DatabaseManager.java
 /mnt/d/trungdung/JAVA/todo-application/src/main/java/com/spd/Todo.java

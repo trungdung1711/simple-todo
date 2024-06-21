@@ -1,6 +1,7 @@
 package com.spd.subcommand;
 
 
+import com.spd.subcommand.converter.PriorityConverter;
 import com.spd.subcommand.converter.TypeConverter;
 import com.spd.tasks.Priority;
 import com.spd.tasks.Task;
@@ -34,7 +35,8 @@ public class Add implements Runnable
     (
         paramLabel = "<priority>",
         description = "Priority of task",
-        index = "1"
+        index = "1",
+        converter = PriorityConverter.class
     )
     private Priority prio;
 
