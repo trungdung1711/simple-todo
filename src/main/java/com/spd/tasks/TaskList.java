@@ -65,10 +65,40 @@ public class TaskList
         });
     }
 
+
+    /**
+     * Extend the due of the overdued tasks
+     * @param none
+     * @return none
+     */
+    public void extendDueAll()
+    {
+        list.forEach((Task task) -> 
+        {
+                task.extendDue();
+        });
+    }
+
+
+    /**
+     * Extend the due of the specified task using id
+     * @param id
+     * @throws InvalidTaskIdentifierException 
+     */
+    public void extendDue(Integer id)
+    {
+        try
+        {
+            this.list.get(id - 1).extendDue();
+        }
+        catch (IndexOutOfBoundsException ioobe)
+        {
+            throw new InvalidTaskIdentifierException("Invalid task identifier", ioobe);
+        }
+    }
+
     /**
      * Sort the tasks based on the priority and the date of due
-     * @param
-     * @return 
      */
     public void sortByPriority()
     {

@@ -1,1 +1,1 @@
-[{"type":"STUDY","done":true,"prio":"MUST_DO","content":"Buying japanese book","dueString":"04 Jul 2024","overDue":false},{"type":"EXERCISES","done":true,"prio":"SHOULD_DO","content":"Learning Swing","dueString":"03 Jul 2024","overDue":false},{"type":"WORK","done":true,"prio":"SHOULD_DO","content":"Buying tablet for learning","dueString":"20 Jul 2024","overDue":false}]
+[]

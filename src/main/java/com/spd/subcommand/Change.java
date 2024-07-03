@@ -109,10 +109,12 @@ public class Change implements Runnable
         catch (InvalidInformationOfTasksException ivlifote)
         {   
             System.err.println("Changing error: " + ivlifote.getMessage());
+            return;
         }
         catch (InvalidTaskIdentifierException ivltie)
         {
             System.err.println("Changing error: " + ivltie.getMessage());
+            return;
         }
     }
 };

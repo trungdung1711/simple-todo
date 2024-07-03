@@ -66,22 +66,18 @@ public class Add implements Runnable
         try
         {
             TaskList newList = DatabaseManager.generateList();
-
-            try
-            {
-                Task newTask = new Task(this.type, Boolean.FALSE, this.prio, this.content, this.dueString);
-                newList.add(newTask);
-            }
-            catch (InvalidInformationOfTasksException iviote)
-            {
-                System.err.println("Adding error: " +  iviote.getMessage());
-                return;
-            }
+            Task newTask = new Task(this.type, Boolean.FALSE, this.prio, this.content, this.dueString);
+            newList.add(newTask);
             DatabaseManager.saveList(newList);
         }
         catch(FailToConnectDataBaseException ftcdbe)
         {
             System.err.println("Adding error: " + ftcdbe.getMessage());
+            return;
+        }
+        catch (InvalidInformationOfTasksException iviote)
+        {
+            System.err.println("Adding error: " +  iviote.getMessage());
             return;
         }
     }

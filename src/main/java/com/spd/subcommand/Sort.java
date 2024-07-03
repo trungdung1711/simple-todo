@@ -26,6 +26,7 @@ public class Sort implements Runnable
         catch (FailToConnectDataBaseException ftcdbe)
         {
             System.err.println("Sorting error: " + ftcdbe.getMessage());
+            return;
         }
     }
     

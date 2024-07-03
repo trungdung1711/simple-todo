@@ -14,6 +14,7 @@ public class Task
     private Priority    prio = Priority.SHOULD_DO;
     private String      content;
     private String      dueString;
+
     private Boolean     overDue;
 
     public Task()
@@ -40,6 +41,19 @@ public class Task
         this.dueString = dueString;
         this.done = done;
         this.overDue = Boolean.FALSE;
+    }
+
+    
+    /**
+     * Extend the due of this task by today
+     */
+    public void extendDue()
+    {
+        if (isOverDue())
+        {
+            DateTimeFormatter fm = DateTimeFormatter.ofPattern("dd MMM yyyy");
+            changeDueDay(LocalDate.now().format(fm));
+        }
     }
 
 
@@ -112,8 +126,7 @@ public class Task
         {
             LocalDate due = LocalDate.parse(dueString,fmt);
             LocalDate today = LocalDate.now();
-            overDue = due.isBefore(today);
-            return overDue;
+            return due.isBefore(today);
         }
         catch (DateTimeParseException dtpe)
         {
