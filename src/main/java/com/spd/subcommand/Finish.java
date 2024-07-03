@@ -33,25 +33,22 @@ public class Finish implements Runnable
         try
         {
             TaskList newList = DatabaseManager.generateList();
-            try
+            List<Integer> idsList = Arrays.asList(ids);
+            ArrayList<Integer> idsArrayList = new ArrayList<>(idsList);
+            idsArrayList.stream().forEach( (Integer id) -> 
             {
-                List<Integer> idsList = Arrays.asList(ids);
-                ArrayList<Integer> idsArrayList = new ArrayList<>(idsList);
-                idsArrayList.stream().forEach( (Integer id) -> 
-                {
-                    newList.finish(id);
-                });
-            }
-            catch (InvalidTaskIdentifierException ivtie)
-            {
-                System.err.println("Finishing error: " + ivtie.getMessage());
-                return;
-            }
+                newList.finish(id);
+            });
             DatabaseManager.saveList(newList);
         }
         catch (FailToConnectDataBaseException ftcdbe)
         {
             System.err.println("Finishing error: " + ftcdbe.getMessage());
+            return;
+        }
+        catch (InvalidTaskIdentifierException ivtie)
+        {
+            System.err.println("Finishing error: " + ivtie.getMessage());
             return;
         }
     }

@@ -32,26 +32,23 @@ public class Unfinish implements Runnable
     {
         try
         {
-            TaskList newList = DatabaseManager.generateList();
-            try
+        TaskList newList = DatabaseManager.generateList();
+            List<Integer> idsList = Arrays.asList(ids);
+            ArrayList<Integer> idsArrayList = new ArrayList<>(idsList);
+            idsArrayList.stream().forEach( (Integer id) -> 
             {
-                List<Integer> idsList = Arrays.asList(ids);
-                ArrayList<Integer> idsArrayList = new ArrayList<>(idsList);
-                idsArrayList.stream().forEach( (Integer id) -> 
-                {
-                    newList.unfinish(id);
-                });
-            }
-            catch (InvalidTaskIdentifierException ivtie)
-            {
-                System.err.println("Unfinishing error: " + ivtie.getMessage());
-                return;
-            }
+                newList.unfinish(id);
+            });
             DatabaseManager.saveList(newList);
         }
         catch (FailToConnectDataBaseException ftcdbe)
         {
             System.err.println("Unfinishing error: " + ftcdbe.getMessage());
+            return;
+        }
+        catch (InvalidTaskIdentifierException ivtie)
+        {
+            System.err.println("Unfinishing error: " + ivtie.getMessage());
             return;
         }
     }
