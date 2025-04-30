@@ -15,8 +15,6 @@ public class Task
     private String      content;
     private String      dueString;
 
-    private Boolean     overDue;
-
     public Task()
     {
         content = null;
@@ -40,7 +38,6 @@ public class Task
         this.content = content;
         this.dueString = dueString;
         this.done = done;
-        this.overDue = Boolean.FALSE;
     }
 
     

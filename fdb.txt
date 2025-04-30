@@ -1,1 +1,1 @@
-[]
+[{"type":"STUDY","done":false,"prio":"MUST_DO","content":"Doing japanese test","dueString":"01 May 2025","overDue":false}]
